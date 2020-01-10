@@ -1,0 +1,38 @@
+<div class="container" style="margin-left: 37%; margin-right: 37%;">
+    <div class="row">
+        <input type="text" class="form-control" 
+            [(ngModel)]="newTaskTitle" 
+            placeholder="type in new task"
+            style="width: 25%;"
+            (keydown.enter)="addTask()">
+        <button class="btn btn-success" (click)="addTask()">add</button>
+    </div>
+
+    <br>
+
+    <div *ngIf="this.tasksToDo.length > 0">
+        <p><b>TO DO</b></p>
+        <ul *ngFor="let task of tasksToDo">
+            <li>
+                <app-task-details [task]="task" 
+                    (updateRequest)="updateTask($event)"
+                    (deleteRequest)="deleteTask($event)">
+                </app-task-details>
+            </li>
+        </ul>
+    </div>
+
+    <br>
+
+    <div *ngIf="this.tasksDone.length > 0">
+        <p><b>DONE</b></p>
+        <ul *ngFor="let task of tasksDone">
+            <li>
+                <app-task-details [task]="task" 
+                    (updateRequest)="updateTask($event)"
+                    (deleteRequest)="deleteTask($event)">
+                </app-task-details>
+            </li>
+        </ul>
+    </div>
+</div>

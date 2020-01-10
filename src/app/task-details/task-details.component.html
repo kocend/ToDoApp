@@ -1,0 +1,22 @@
+<div class="form-row align-items-center" style="width: 50%;">
+    <div class="col-auto custom-control custom-checkbox">
+            <input type="checkbox" 
+                class="custom-control-input" 
+                id="{{task.id}}"
+                [(ngModel)]="task.isDone" 
+                (change)="updateTask(task.id, task)">
+            <label class="custom-control-label" for="{{task.id}}"></label>
+    </div>
+    <div class="col-auto">
+        <input type="text" 
+            class="form-control" 
+            [(ngModel)]="task.title" 
+            (mouseout)=checkChanges()>
+    </div>
+    <div class="col-auto" *ngIf="changesDetected">
+        <button class="btn btn-success" (click)="updateTask(task.id, task)">save changes</button>
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-danger" (click)="deleteTask(task.id)">X</button>
+    </div>
+</div>
